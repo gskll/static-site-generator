@@ -1,12 +1,12 @@
-from typing import Self
+from typing import Sequence
 
 
 class HTMLNode:
     def __init__(
         self,
-        tag: str | None = None,
         value: str | None = None,
-        children: list[Self] | None = None,
+        tag: str | None = None,
+        children: Sequence["HTMLNode"] | None = None,
         props: dict[str, str] | None = None,
     ) -> None:
         self.tag = tag
