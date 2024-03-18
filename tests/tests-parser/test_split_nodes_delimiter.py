@@ -1,8 +1,8 @@
 import unittest
 
-from src.leafnode import LeafNode
-from src.textnode import TextNode, TextNodeType
-from src.utils.split_nodes_delimiter import split_nodes_delimiter
+from src.models.leafnode import LeafNode
+from src.models.textnode import TextNode, TextNodeType
+from src.parser.split_nodes_delimiter import split_nodes_delimiter
 
 
 class TestSplitNodesDelimiter(unittest.TestCase):

@@ -1,6 +1,6 @@
 import unittest
 
-from src.utils.block_to_block_type import BlockType, block_to_block_type
+from src.parser.block_to_block_type import BlockType, block_to_block_type
 
 
 class TestBlockToBlockType(unittest.TestCase):

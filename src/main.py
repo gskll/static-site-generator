@@ -1,9 +1,9 @@
-from textnode import TextNode
+from src.models.textnode import TextNode, TextNodeType
 
 
 def main():
-    tn = TextNode("this is a text node", "bold")
-    tn2 = TextNode("this is a text node", "bold", "url.com")
+    tn = TextNode("this is a text node", TextNodeType.BOLD)
+    tn2 = TextNode("this is a text node", TextNodeType.BOLD, "url.com")
 
     print(tn)
     print(tn2)

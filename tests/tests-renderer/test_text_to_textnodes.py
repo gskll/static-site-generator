@@ -1,7 +1,7 @@
 import unittest
 
-from src.textnode import TextNode, TextNodeType
-from src.utils.text_to_textnodes import text_to_textnodes
+from src.models.textnode import TextNode, TextNodeType
+from src.renderer.text_to_textnodes import text_to_textnodes
 
 
 class TestTextToTextNodes(unittest.TestCase):
