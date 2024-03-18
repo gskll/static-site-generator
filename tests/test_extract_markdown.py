@@ -49,3 +49,51 @@ class TestExtractMarkdownImages(unittest.TestCase):
         ]
 
         self.assertEqual(extracted, want)
+
+
+class TestExtractMarkdownLinks(unittest.TestCase):
+    def test_works_multiple_matches(self):
+        text = "This is text with a [link](https://www.example.com) and [another](https://www.example.com/another)"
+        extracted = extract_markdown_links(text)
+        want = [
+            ("link", "https://www.example.com"),
+            ("another", "https://www.example.com/another"),
+        ]
+
+        self.assertEqual(extracted, want)
+
+    def test_works_no_matches(self):
+        text = "This is just text"
+        extracted = extract_markdown_links(text)
+        want = []
+
+        self.assertEqual(extracted, want)
+
+    def test_works_empty_anchor(self):
+        text = "This is text with a [link](https://www.example.com) and [](https://www.example.com/another)"
+        extracted = extract_markdown_links(text)
+        want = [
+            ("link", "https://www.example.com"),
+            ("", "https://www.example.com/another"),
+        ]
+
+        self.assertEqual(extracted, want)
+
+    def test_works_empty_href(self):
+        text = "This is text with a [link](https://www.example.com) and [another]()"
+        extracted = extract_markdown_links(text)
+        want = [
+            ("link", "https://www.example.com"),
+            ("another", ""),
+        ]
+
+        self.assertEqual(extracted, want)
+
+    def test_partial_match(self):
+        text = "This is text with (parentheses) and [a link](https://www.example.com)"
+        extracted = extract_markdown_links(text)
+        want = [
+            ("a link", "https://www.example.com"),
+        ]
+
+        self.assertEqual(extracted, want)
