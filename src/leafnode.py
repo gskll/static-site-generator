@@ -20,3 +20,13 @@ class LeafNode(HTMLNode):
         html = open_tag + self.value + close_tag
 
         return html
+
+    def __eq__(self, other: object) -> bool:
+        if not isinstance(other, LeafNode):
+            return False
+
+        return (
+            self.tag == other.tag
+            and self.value == other.value
+            and self.props == other.props
+        )
