@@ -1,5 +1,12 @@
+from enum import Enum
+
+TextNodeType = Enum("TextNodeType", ["TEXT", "BOLD", "ITALIC", "CODE", "LINK", "IMAGE"])
+
+
 class TextNode:
-    def __init__(self, text: str, text_type: str, url: str | None = None) -> None:
+    def __init__(
+        self, text: str, text_type: TextNodeType, url: str | None = None
+    ) -> None:
         self.text = text
         self.text_type = text_type
         self.url = url
