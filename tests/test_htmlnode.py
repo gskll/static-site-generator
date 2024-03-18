@@ -12,7 +12,7 @@ class TestHTMLNode(unittest.TestCase):
         self.assertIsNone(node.props)
 
     def test_properties(self):
-        node = HTMLNode("tag", "value", props={"a": "b"})
+        node = HTMLNode(tag="tag", value="value", props={"a": "b"})
         if not node.props:
             self.fail("props not set correctly")
 
