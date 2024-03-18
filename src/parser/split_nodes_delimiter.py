@@ -1,5 +1,5 @@
-from src.htmlnode import HTMLNode
-from src.textnode import TextNode, TextNodeType
+from src.models.htmlnode import HTMLNode
+from src.models.textnode import TextNode, TextNodeType
 
 
 def split_nodes_delimiter(

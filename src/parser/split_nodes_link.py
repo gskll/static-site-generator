@@ -1,9 +1,9 @@
-from src.htmlnode import HTMLNode
-from src.textnode import TextNode, TextNodeType
-from src.utils.extract_markdown import extract_markdown_images
+from src.models.htmlnode import HTMLNode
+from src.models.textnode import TextNode, TextNodeType
+from src.parser.extract_markdown import extract_markdown_links
 
 
-def split_nodes_image(
+def split_nodes_link(
     old_nodes: list[TextNode | HTMLNode],
 ) -> list[TextNode | HTMLNode]:
     new_nodes = list()
@@ -19,19 +19,19 @@ def split_nodes_image(
         if len(n.text) == 0:
             continue
 
-        images = extract_markdown_images(n.text)
-        if len(images) == 0:
+        links = extract_markdown_links(n.text)
+        if len(links) == 0:
             new_nodes.append(n)
             continue
 
         text_string = n.text
-        for img in images:
-            parts = text_string.split(f"![{img[0]}]({img[1]})", 1)
+        for link in links:
+            parts = text_string.split(f"[{link[0]}]({link[1]})", 1)
             if len(parts[0]):
                 new_nodes.append(TextNode(text=parts[0], text_type=TextNodeType.TEXT))
 
             new_nodes.append(
-                TextNode(text=img[0], text_type=TextNodeType.IMAGE, url=img[1])
+                TextNode(text=link[0], text_type=TextNodeType.LINK, url=link[1])
             )
             text_string = parts[1]
 

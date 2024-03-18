@@ -1,8 +1,8 @@
 import unittest
 
-from src.textnode import TextNode, TextNodeType
-from src.leafnode import LeafNode
-from src.utils.split_nodes_image import split_nodes_image
+from src.models.textnode import TextNode, TextNodeType
+from src.models.leafnode import LeafNode
+from src.parser.split_nodes_image import split_nodes_image
 
 
 class TestSplitNodesImage(unittest.TestCase):

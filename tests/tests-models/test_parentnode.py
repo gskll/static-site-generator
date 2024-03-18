@@ -1,7 +1,7 @@
 import unittest
 
-from src.leafnode import LeafNode
-from src.parentnode import ParentNode
+from src.models.leafnode import LeafNode
+from src.models.parentnode import ParentNode
 
 leaf_children = [
     LeafNode("Bold text", "b"),
