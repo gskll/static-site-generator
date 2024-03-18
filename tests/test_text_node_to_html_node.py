@@ -2,10 +2,10 @@ import unittest
 
 from src.leafnode import LeafNode
 from src.textnode import TextNode, TextNodeType
-from src.utils import text_node_to_html_node
+from src.utils.text_node_to_html_node import text_node_to_html_node
 
 
-class TestUtils(unittest.TestCase):
+class TestTextNodeToHTMLNode(unittest.TestCase):
     def test_text_node_to_html_node_TEXT(self):
         textnode = TextNode(text="test", text_type=TextNodeType.TEXT)
         htmlnode = text_node_to_html_node(textnode)
