@@ -41,6 +41,7 @@ def is_quote_block(block: str) -> bool:
     return True
 
 
+# TODO: handle distinct blocks if symbol changes
 def is_unordered_list(block: str) -> bool:
     lines = block.split("\n")
     for line in lines:
@@ -50,6 +51,7 @@ def is_unordered_list(block: str) -> bool:
     return True
 
 
+# TODO: handle automatic numbering
 def is_ordered_list(block: str) -> bool:
     lines = block.split("\n")
     for i, line in enumerate(lines):
