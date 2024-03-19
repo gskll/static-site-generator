@@ -28,3 +28,9 @@ class TestSplitMarkdownBlocks(unittest.TestCase):
             "    * indented list item1\n   *indented list item2",
         ]
         self.assertEqual(want, blocks)
+
+    def test_works_with_code_blocks(self):
+        text = "hello\n\n```code\n\nblock```"
+        blocks = split_markdown_blocks(text)
+        want = ["hello", "```code<NL><NL>block```"]
+        self.assertEqual(want, blocks)

@@ -4,6 +4,7 @@ from src.models.markdown_blocks import BlockType
 
 
 def block_to_block_type(block: str) -> BlockType:
+    block = block.strip()
     if is_heading(block):
         return BlockType.HEADING
 
@@ -45,6 +46,8 @@ def is_quote_block(block: str) -> bool:
 def is_unordered_list(block: str) -> bool:
     lines = block.split("\n")
     for line in lines:
+        if len(line) < 1:
+            continue
         if line[0] not in "*-" or line[1] != " ":
             return False
 
@@ -55,6 +58,8 @@ def is_unordered_list(block: str) -> bool:
 def is_ordered_list(block: str) -> bool:
     lines = block.split("\n")
     for i, line in enumerate(lines):
+        if len(line) < 1:
+            continue
         if line[0] != f"{i+1}" or line[1] != "." or line[2] != " ":
             return False
 
