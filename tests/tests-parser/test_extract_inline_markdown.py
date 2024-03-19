@@ -1,6 +1,9 @@
 import unittest
 
-from src.parser.extract_markdown import extract_markdown_images, extract_markdown_links
+from src.parser.extract_inline_markdown import (
+    extract_markdown_images,
+    extract_markdown_links,
+)
 
 
 class TestExtractMarkdownImages(unittest.TestCase):
