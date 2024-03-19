@@ -89,6 +89,11 @@ class TestBlockToBlockType(unittest.TestCase):
         bt = block_to_block_type(block)
         self.assertEqual(bt, BlockType.ULIST)
 
+    def test_unordered_list_missing_space(self):
+        block = "-item\n-hello"
+        bt = block_to_block_type(block)
+        self.assertEqual(bt, BlockType.PARAGRAPH)
+
     def test_unordered_list_missing(self):
         block = "- item 1\n* item 2\nitem 3"
         bt = block_to_block_type(block)
@@ -108,6 +113,11 @@ class TestBlockToBlockType(unittest.TestCase):
         block = "1. item 1\n2. item2\n3. item3"
         bt = block_to_block_type(block)
         self.assertEqual(bt, BlockType.OLIST)
+
+    def test_ordered_list_missing_space(self):
+        block = "1.item\n2.hello"
+        bt = block_to_block_type(block)
+        self.assertEqual(bt, BlockType.PARAGRAPH)
 
     def test_ordered_list_misnumbered(self):
         block = "0. item 1\n2. item2\n3. item3"

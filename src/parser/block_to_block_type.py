@@ -44,7 +44,7 @@ def is_quote_block(block: str) -> bool:
 def is_unordered_list(block: str) -> bool:
     lines = block.split("\n")
     for line in lines:
-        if line[0] not in "*-":
+        if line[0] not in "*-" or line[1] != " ":
             return False
 
     return True
@@ -53,7 +53,7 @@ def is_unordered_list(block: str) -> bool:
 def is_ordered_list(block: str) -> bool:
     lines = block.split("\n")
     for i, line in enumerate(lines):
-        if line[0] != f"{i+1}" or line[1] != ".":
+        if line[0] != f"{i+1}" or line[1] != "." or line[2] != " ":
             return False
 
     return True
