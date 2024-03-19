@@ -14,7 +14,7 @@ def text_node_to_html_node(text_node: TextNode) -> "HTMLNode":
         case TextNodeType.CODE:
             return LeafNode(value=text_node.text, tag="code")
         case TextNodeType.STRIKETHROUGH:
-            return LeafNode(value=text_node.text, tag="del")
+            return LeafNode(value=text_node.text, tag="s")
         case TextNodeType.LINK:
             if not text_node.url:
                 raise ValueError("link text_node with no url")

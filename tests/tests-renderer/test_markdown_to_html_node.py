@@ -35,7 +35,7 @@ class TestMarkdownToHTMLNode(unittest.TestCase):
         node = markdown_to_html_node(markdown)
         html = node.to_html()
 
-        want = '<div><p><b>Bold</b> text with some\nnicely <code>codified</code> bits and also <del>some</del> a bit of <i>italic</i> <a href="links.com">links</a></p><p><img src="ghost.jpg" alt="boo"></p></div>'
+        want = '<div><p><b>Bold</b> text with some\nnicely <code>codified</code> bits and also <s>some</s> a bit of <i>italic</i> <a href="links.com">links</a></p><p><img src="ghost.jpg" alt="boo"></p></div>'
         self.assertEqual(want, html)
 
     def test_lists(self):
