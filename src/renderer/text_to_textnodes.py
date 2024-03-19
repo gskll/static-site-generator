@@ -9,8 +9,9 @@ def text_to_textnodes(text: str) -> list[TextNode | HTMLNode]:
     node = TextNode(text=text, text_type=TextNodeType.TEXT)
     nodes = split_nodes_image([node])
     nodes = split_nodes_link(nodes)
-    nodes = split_nodes_delimiter(nodes, "**", TextNodeType.BOLD)
-    nodes = split_nodes_delimiter(nodes, "*", TextNodeType.ITALIC)
-    nodes = split_nodes_delimiter(nodes, "`", TextNodeType.CODE)
+    nodes = split_nodes_delimiter(nodes, TextNodeType.BOLD)
+    nodes = split_nodes_delimiter(nodes, TextNodeType.ITALIC)
+    nodes = split_nodes_delimiter(nodes, TextNodeType.CODE)
+    nodes = split_nodes_delimiter(nodes, TextNodeType.STRIKETHROUGH)
 
     return nodes

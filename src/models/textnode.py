@@ -1,6 +1,8 @@
 from enum import Enum
 
-TextNodeType = Enum("TextNodeType", ["TEXT", "BOLD", "ITALIC", "CODE", "LINK", "IMAGE"])
+TextNodeType = Enum(
+    "TextNodeType", ["TEXT", "BOLD", "ITALIC", "CODE", "LINK", "IMAGE", "STRIKETHROUGH"]
+)
 
 
 class TextNode:

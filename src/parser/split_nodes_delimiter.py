@@ -1,10 +1,18 @@
 from src.models.htmlnode import HTMLNode
 from src.models.textnode import TextNode, TextNodeType
 
+delimiters = {
+    TextNodeType.BOLD: "**",
+    TextNodeType.ITALIC: "*",
+    TextNodeType.CODE: "`",
+    TextNodeType.STRIKETHROUGH: "~~",
+}
+
 
 def split_nodes_delimiter(
-    old_nodes: list[TextNode | HTMLNode], delimiter: str, text_type: TextNodeType
+    old_nodes: list[TextNode | HTMLNode], text_type: TextNodeType
 ) -> list[TextNode | HTMLNode]:
+    delimiter = delimiters[text_type]
     new_nodes = list()
 
     for n in old_nodes:

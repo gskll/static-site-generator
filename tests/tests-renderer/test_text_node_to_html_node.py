@@ -24,6 +24,12 @@ class TestTextNodeToHTMLNode(unittest.TestCase):
         self.assertIsInstance(htmlnode, LeafNode)
         self.assertEqual(htmlnode, LeafNode(value="test", tag="i"))
 
+    def test_text_node_to_html_node_STRIKETHROUGH(self):
+        textnode = TextNode(text="test", text_type=TextNodeType.STRIKETHROUGH)
+        htmlnode = text_node_to_html_node(textnode)
+        self.assertIsInstance(htmlnode, LeafNode)
+        self.assertEqual(htmlnode, LeafNode(value="test", tag="del"))
+
     def test_text_node_to_html_node_CODE(self):
         textnode = TextNode(text="test", text_type=TextNodeType.CODE)
         htmlnode = text_node_to_html_node(textnode)
