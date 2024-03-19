@@ -1,10 +1,6 @@
-from enum import Enum
 import re
 
-
-BlockType = Enum(
-    "BlockType", ["PARAGRAPH", "HEADING", "CODE", "QUOTE", "ULIST", "OLIST"]
-)
+from src.models.markdown_blocks import BlockType
 
 
 def block_to_block_type(block: str) -> BlockType:
