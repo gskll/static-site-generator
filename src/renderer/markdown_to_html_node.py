@@ -55,23 +55,17 @@ def block_to_html_node_paragraph(block: str) -> HTMLNode:
 def block_to_html_node_heading(block: str) -> HTMLNode:
     parts = block.split(" ", 1)
     header_tag = f"h{len(parts[0])}"
-    textnodes = text_to_textnodes(parts[1])
-    children = list()
-    for node in textnodes:
-        if isinstance(node, TextNode):
-            node = text_node_to_html_node(node)
-
-        children.append(node)
+    children = build_inline_nodes(parts[1])
 
     node = ParentNode(tag=header_tag, children=children)
     return node
 
 
 def block_to_html_node_code(block: str) -> HTMLNode:
-    block = block.strip("```")
     block = re.sub(
         "<NL>", "\n", block
     )  # revert newlines that we process on initial block splitting
+    block = block.strip("`\n ")
     child = LeafNode(tag="code", value=block)
     node = ParentNode(tag="pre", children=[child])
     return node
@@ -84,7 +78,7 @@ def block_to_html_node_quote(block: str) -> HTMLNode:
         if all(c in " >" for c in line):
             continue
 
-        line = line[1:]  # handle nested blockquotes
+        line = re.sub(r"^>\s?", "", line, count=1)
         child_node = block_to_html_node(line)
         children.append(child_node)
 

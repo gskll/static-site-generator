@@ -1,3 +1,4 @@
+import re
 import unittest
 
 from src.renderer.markdown_to_html_node import (
@@ -55,7 +56,7 @@ class TestMarkdownToHTMLNode(unittest.TestCase):
         node = markdown_to_html_node(markdown)
         html = node.to_html()
 
-        want = '<div><p>javascript</p><pre><code>\nconsole.log("hello")\nfunction boo(x){\n\treturn x}\n</code></pre><p>and python</p><pre><code>print("hello")\n\ndef boo(x):\n\treturn x\n</code></pre></div>'
+        want = '<div><p>javascript</p><pre><code>console.log("hello")\nfunction boo(x){\n\treturn x}</code></pre><p>and python</p><pre><code>print("hello")\n\ndef boo(x):\n\treturn x</code></pre></div>'
         self.assertEqual(want, html)
 
     def test_block_quotes(self):
@@ -64,8 +65,27 @@ class TestMarkdownToHTMLNode(unittest.TestCase):
         node = markdown_to_html_node(markdown)
         html = node.to_html()
 
-        want = "<div><p>blockquotes</p><blockquote><p>to be</p><p>or not to be</p></blockquote><p>hmm how does it go?</p><blockquote><p> that is </p><p>the question</p><blockquote><p> quote by bill</p></blockquote><p> ok?</p></blockquote><p><i>nested!</i></p></div>"
+        want = "<div><p>blockquotes</p><blockquote><p>to be</p><p>or not to be</p></blockquote><p>hmm how does it go?</p><blockquote><p>that is </p><p>the question</p><blockquote><p>quote by bill</p></blockquote><p>ok?</p></blockquote><p><i>nested!</i></p></div>"
         self.assertEqual(want, html)
+
+    def test_output(self):
+        self.maxDiff = None
+        with open("tests/tests-renderer/data/example.md", encoding="utf-8") as input:
+            markdown = input.read()
+
+        node = markdown_to_html_node(markdown)
+        html = node.to_html()
+
+        with open(
+            "tests/tests-renderer/data/expected.html", encoding="utf-8"
+        ) as expected_html:
+            want = expected_html.read()
+
+            normalised_html = " ".join(html.split())
+            normalised_want = " ".join(want.split())
+            normalised_want = re.sub(r">\s+<", "><", normalised_want)
+
+            self.assertEqual(normalised_html, normalised_want)
 
 
 class TestBlockToHTMLNode(unittest.TestCase):
@@ -104,7 +124,7 @@ class TestBlockToHTMLNode(unittest.TestCase):
         node = block_to_html_node(block)
         html = node.to_html()
 
-        want = '<blockquote><p>to be <b>or</b> not to be</p><p><i>that</i> is the <a href="questions.com">question</a></p><ul><li>nested list</li></ul><blockquote><p> nested blockquote!</p></blockquote></blockquote>'
+        want = '<blockquote><p>to be <b>or</b> not to be</p><p><i>that</i> is the <a href="questions.com">question</a></p><ul><li>nested list</li></ul><blockquote><p>nested blockquote!</p></blockquote></blockquote>'
         self.assertEqual(html, want)
 
     def test_ulist(self):
@@ -121,6 +141,16 @@ class TestBlockToHTMLNode(unittest.TestCase):
         html = node.to_html()
 
         want = "<ol><li><i>italic</i></li><li><b>bold</b></li><li><code>code</code></li><li>normal</li></ol>"
+        self.assertEqual(html, want)
+
+    def test_formatted(self):
+        block = (
+            "This *sentence* tests **out** our ~~block~~ `inline` [styles](styles.com)"
+        )
+        node = block_to_html_node(block)
+        html = node.to_html()
+
+        want = '<p>This <i>sentence</i> tests <b>out</b> our <s>block</s> <code>inline</code> <a href="styles.com">styles</a></p>'
         self.assertEqual(html, want)
 
 
@@ -216,7 +246,7 @@ class TestBlockToHTMLNodeCode(unittest.TestCase):
         self.assertEqual(html, want)
 
     def test_works_multiline(self):
-        block = """```test = True\ndef tester():\n\treturn False```"""
+        block = """```\n test = True\ndef tester():\n\treturn False```\n"""
         node = block_to_html_node_code(block)
         html = node.to_html()
 
@@ -254,7 +284,7 @@ class TestBlockToHTMLNodeQuote(unittest.TestCase):
         node = block_to_html_node_quote(block)
         html = node.to_html()
 
-        want = '<blockquote><p>to be <b>or</b> not to be</p><p><i>that</i> is the <a href="questions.com">question</a></p><ul><li>nested list</li></ul><blockquote><p> nested blockquote!</p></blockquote></blockquote>'
+        want = '<blockquote><p>to be <b>or</b> not to be</p><p><i>that</i> is the <a href="questions.com">question</a></p><ul><li>nested list</li></ul><blockquote><p>nested blockquote!</p></blockquote></blockquote>'
         self.assertEqual(html, want)
 
 
