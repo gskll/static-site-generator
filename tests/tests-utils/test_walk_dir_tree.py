@@ -3,11 +3,7 @@ import tempfile
 import shutil
 import os
 
-from src.utils.treecopy import walk_dir_tree
-
-
-class TestTreecopy(unittest.TestCase):
-    pass
+from src.utils import walk_dir_tree
 
 
 class TestWalkDirTree(unittest.TestCase):
@@ -32,7 +28,7 @@ class TestWalkDirTree(unittest.TestCase):
     def tearDown(self) -> None:
         shutil.rmtree(self.test_dir)
 
-    def test_tmp_files(self):
+    def test_setup(self):
         for path in self.test_dir_paths:
             self.assertTrue(os.path.exists(path))
             self.assertTrue(os.path.isdir(path))

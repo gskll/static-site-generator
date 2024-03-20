@@ -1,7 +1,5 @@
 import os
 
-import os
-
 
 def walk_dir_tree(
     top: str, accumulator: list[tuple[str, list[str], list[str]]] | None = None
@@ -33,10 +31,3 @@ def walk_dir_tree(
         walk_dir_tree(dir_path, accumulator)
 
     return accumulator
-
-
-def treecopy(src: str, target: str):
-    # delete current target directory contents
-
-    # copy src contents to target
-    pass
