@@ -56,10 +56,26 @@ class TestWalkDirTree(unittest.TestCase):
 
         self.assertEqual(str(e.exception.args[0]), "path is not a valid directory")
 
+    def test_handles_walking_empty_dir(self):
+        empty_dir = self.test_dir_paths[-1]  # empty
+        tree = walk_dir_tree(empty_dir)
+        # fmt: off
+        want = [(f"{empty_dir}", [], [],)]
+        # fmt: on
+        self.assertEqual(tree, want)
+
+    def test_handles_dir_files_only(self):
+        dir = self.test_dir_paths[0]
+        tree = walk_dir_tree(dir)
+        # fmt: off
+        want = [(f"{dir}", [], ["test_file0.txt"])]
+        # fmt: on
+        self.assertEqual(tree, want)
+        pass
+
     def test_walks_path(self):
         self.maxDiff = None
         tree = walk_dir_tree(self.test_dir)
-        print(tree)
         # fmt: off
         want = [
             ( f"{self.test_dir}", ["target-dir", "source-dir"], [],),
