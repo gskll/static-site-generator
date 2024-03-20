@@ -1,2 +1,3 @@
 def tree_remove(path: str):
-    pass
+    tree = walk_dir_tree(path)
+

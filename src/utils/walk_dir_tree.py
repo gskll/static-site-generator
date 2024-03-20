@@ -5,7 +5,7 @@ def walk_dir_tree(
     top: str, accumulator: list[tuple[str, list[str], list[str]]] | None = None
 ) -> list[tuple[str, list[str], list[str]]]:
     if not os.path.exists(top):
-        raise ValueError("path doesn't exist", top)
+        raise FileNotFoundError("path doesn't exist", top)
 
     if not os.path.isdir(top):
         raise ValueError("path is not a valid directory", top)

@@ -40,7 +40,7 @@ class TestWalkDirTree(unittest.TestCase):
 
     def test_handles_path_not_exists(self):
         path = "./nope"
-        with self.assertRaises(ValueError) as e:
+        with self.assertRaises(FileNotFoundError) as e:
             walk_dir_tree(path)
 
         self.assertEqual(str(e.exception.args[0]), "path doesn't exist")
