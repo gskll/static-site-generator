@@ -6,8 +6,8 @@ from src.models.markdown_blocks import BlockType
 from src.models.textnode import TextNode
 from src.parser.block_to_block_type import block_to_block_type
 from src.parser.split_markdown_blocks import split_markdown_blocks
-from src.renderer.text_node_to_html_node import text_node_to_html_node
-from src.renderer.text_to_textnodes import text_to_textnodes
+from .text_node_to_html_node import text_node_to_html_node
+from .text_to_textnodes import text_to_textnodes
 
 
 def markdown_to_html_node(doc: str) -> HTMLNode:

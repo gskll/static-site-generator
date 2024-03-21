@@ -1,5 +1,5 @@
 from typing import Sequence
-from src.models.htmlnode import HTMLNode
+from .htmlnode import HTMLNode
 
 
 class ParentNode(HTMLNode):

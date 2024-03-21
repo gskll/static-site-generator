@@ -1,6 +1,6 @@
 from src.models.htmlnode import HTMLNode
 from src.models.textnode import TextNode, TextNodeType
-from src.parser.extract_inline_markdown import extract_markdown_images
+from .extract_inline_markdown import extract_markdown_images
 
 
 def split_nodes_image(

@@ -1,4 +1,4 @@
-from src.models.htmlnode import HTMLNode
+from .htmlnode import HTMLNode
 
 self_closing_tags = ["img"]
 

@@ -1,6 +1,6 @@
 from src.models.htmlnode import HTMLNode
 from src.models.textnode import TextNode, TextNodeType
-from src.parser.extract_inline_markdown import extract_markdown_links
+from .extract_inline_markdown import extract_markdown_links
 
 
 def split_nodes_link(
