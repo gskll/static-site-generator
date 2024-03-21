@@ -27,7 +27,7 @@ def tree_copy(src: str, target: str):
 
         if isdir(path) and not exists(newpath):
             try:
-                print(f"MKDIR: {target}")
+                print(f"MKDIR: {newpath}")
                 os.mkdir(newpath)
             except Exception as e:
                 not_copied.append(newpath)
