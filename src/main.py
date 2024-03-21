@@ -1,12 +1,10 @@
-from src.models.textnode import TextNode, TextNodeType
+from src.renderer.generate_page import generate_page
+from src.utils import tree_copy
 
 
 def main():
-    tn = TextNode("this is a text node", TextNodeType.BOLD)
-    tn2 = TextNode("this is a text node", TextNodeType.BOLD, "url.com")
-
-    print(tn)
-    print(tn2)
+    tree_copy("./static", "./public")
+    generate_page("./content/index.md", "./template.html", "./public/index.html")
 
 
 main()
