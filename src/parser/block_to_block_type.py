@@ -25,8 +25,8 @@ def block_to_block_type(block: str) -> BlockType:
 
 def is_heading(block: str) -> bool:
     heading_re = r"^#{1,6} .+"
-    matches = re.findall(heading_re, block)
-    return len(matches) > 0
+    match = re.match(heading_re, block)
+    return bool(match)
 
 
 def is_code_block(block: str) -> bool:
