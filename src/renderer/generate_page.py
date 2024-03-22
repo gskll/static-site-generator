@@ -1,5 +1,5 @@
 from os import makedirs
-from os.path import exists, isfile, isdir, dirname
+from os.path import isfile, isdir, dirname
 from .extract_page_title import extract_page_title
 from .markdown_to_html_node import markdown_to_html_node
 
