@@ -14,7 +14,7 @@ def process_text_preserving_code_blocks(text: str) -> str:
 
     def process_code_block(match: re.Match):
         code_block = match.group(0)
-        return re.sub("\n", "<NL>", code_block)
+        return code_block.replace("\n", "<NL>")
 
     processed_text = re.sub(code_block_pattern, process_code_block, text)
 
