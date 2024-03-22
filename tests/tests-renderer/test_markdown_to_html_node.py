@@ -32,7 +32,7 @@ class TestMarkdownToHTMLNode(unittest.TestCase):
 
     def test_inline_elements(self):
         self.maxDiff = None
-        markdown = "**Bold** text with some\nnicely `codified` bits and also ~~some~~ a bit of *italic* [links](links.com)\n\n![boo](ghost.jpg)"
+        markdown = "**Bold** text with some\nnicely `codified` bits and also ~~some~~ a bit of _italic_ [links](links.com)\n\n![boo](ghost.jpg)"
         node = markdown_to_html_node(markdown)
         html = node.to_html()
 
@@ -42,7 +42,7 @@ class TestMarkdownToHTMLNode(unittest.TestCase):
     def test_lists(self):
         self.maxDiff = None
         markdown = (
-            "# Lists test:\n\nunordered\n\n* oh\n* hi\n\n*ordered*\n\n1. good\n2. bye\n"
+            "# Lists test:\n\nunordered\n\n* oh\n* hi\n\n_ordered_\n\n1. good\n2. bye\n"
         )
         node = markdown_to_html_node(markdown)
         html = node.to_html()
@@ -61,7 +61,7 @@ class TestMarkdownToHTMLNode(unittest.TestCase):
 
     def test_block_quotes(self):
         self.maxDiff = None
-        markdown = "blockquotes\n\n>to be\n>or not to be\n\nhmm how does it go?\n\n> that is \n>\n>the question\n>> quote by bill\n> ok?\n\n*nested!*"
+        markdown = "blockquotes\n\n>to be\n>or not to be\n\nhmm how does it go?\n\n> that is \n>\n>the question\n>> quote by bill\n> ok?\n\n_nested!_"
         node = markdown_to_html_node(markdown)
         html = node.to_html()
 
@@ -96,7 +96,7 @@ class TestBlockToHTMLNode(unittest.TestCase):
         self.assertEqual(str(e.exception), "empty block")
 
     def test_paragraph(self):
-        block = "This *is* just a **random** paragraph with `some` [formatting](www.formatting.com)"
+        block = "This _is_ just a **random** paragraph with `some` [formatting](www.formatting.com)"
         node = block_to_html_node(block)
         html = node.to_html()
 
@@ -104,7 +104,7 @@ class TestBlockToHTMLNode(unittest.TestCase):
         self.assertEqual(html, want)
 
     def test_heading(self):
-        block = "#### **Header** with *some* `cool` [formatting](link)"
+        block = "#### **Header** with _some_ `cool` [formatting](link)"
         node = block_to_html_node(block)
         html = node.to_html()
 
@@ -120,7 +120,7 @@ class TestBlockToHTMLNode(unittest.TestCase):
         self.assertEqual(html, want)
 
     def test_quote(self):
-        block = ">to be **or** not to be\n>*that* is the [question](questions.com)\n>* nested list\n>> nested blockquote!"
+        block = ">to be **or** not to be\n>_that_ is the [question](questions.com)\n>* nested list\n>> nested blockquote!"
         node = block_to_html_node(block)
         html = node.to_html()
 
@@ -128,7 +128,7 @@ class TestBlockToHTMLNode(unittest.TestCase):
         self.assertEqual(html, want)
 
     def test_ulist(self):
-        block = "* *italic*\n* **bold**\n* `code`\n* normal"
+        block = "* _italic_\n* **bold**\n* `code`\n* normal"
         node = block_to_html_node(block)
         html = node.to_html()
 
@@ -136,7 +136,7 @@ class TestBlockToHTMLNode(unittest.TestCase):
         self.assertEqual(html, want)
 
     def test_olist(self):
-        block = "1. *italic*\n2. **bold**\n3. `code`\n4. normal"
+        block = "1. _italic_\n2. **bold**\n3. `code`\n4. normal"
         node = block_to_html_node(block)
         html = node.to_html()
 
@@ -145,7 +145,7 @@ class TestBlockToHTMLNode(unittest.TestCase):
 
     def test_formatted(self):
         block = (
-            "This *sentence* tests **out** our ~~block~~ `inline` [styles](styles.com)"
+            "This _sentence_ tests **out** our ~~block~~ `inline` [styles](styles.com)"
         )
         node = block_to_html_node(block)
         html = node.to_html()
@@ -163,7 +163,7 @@ class TestBlockToHTMLNodeParagraph(unittest.TestCase):
         self.assertEqual(html, want)
 
     def test_converts_formatted_block(self):
-        block = "This *is* just a **random** paragraph with `some` [formatting](www.formatting.com)"
+        block = "This _is_ just a **random** paragraph with `some` [formatting](www.formatting.com)"
         node = block_to_html_node_paragraph(block)
         html = node.to_html()
 
@@ -188,7 +188,7 @@ class TestBlockToHTMLNodeHeading(unittest.TestCase):
         self.assertEqual(html, want)
 
     def test_works_formatted_h1(self):
-        block = "# **Header** with *some* `cool` [formatting](link)"
+        block = "# **Header** with _some_ `cool` [formatting](link)"
         node = block_to_html_node_heading(block)
         html = node.to_html()
 
@@ -196,7 +196,7 @@ class TestBlockToHTMLNodeHeading(unittest.TestCase):
         self.assertEqual(html, want)
 
     def test_works_formatted_h2(self):
-        block = "## **Header** with *some* `cool` [formatting](link)"
+        block = "## **Header** with _some_ `cool` [formatting](link)"
         node = block_to_html_node_heading(block)
         html = node.to_html()
 
@@ -204,7 +204,7 @@ class TestBlockToHTMLNodeHeading(unittest.TestCase):
         self.assertEqual(html, want)
 
     def test_works_formatted_h3(self):
-        block = "### **Header** with *some* `cool` [formatting](link)"
+        block = "### **Header** with _some_ `cool` [formatting](link)"
         node = block_to_html_node_heading(block)
         html = node.to_html()
 
@@ -212,7 +212,7 @@ class TestBlockToHTMLNodeHeading(unittest.TestCase):
         self.assertEqual(html, want)
 
     def test_works_formatted_h4(self):
-        block = "#### **Header** with *some* `cool` [formatting](link)"
+        block = "#### **Header** with _some_ `cool` [formatting](link)"
         node = block_to_html_node_heading(block)
         html = node.to_html()
 
@@ -220,7 +220,7 @@ class TestBlockToHTMLNodeHeading(unittest.TestCase):
         self.assertEqual(html, want)
 
     def test_works_formatted_h5(self):
-        block = "##### **Header** with *some* `cool` [formatting](link)"
+        block = "##### **Header** with _some_ `cool` [formatting](link)"
         node = block_to_html_node_heading(block)
         html = node.to_html()
 
@@ -228,7 +228,7 @@ class TestBlockToHTMLNodeHeading(unittest.TestCase):
         self.assertEqual(html, want)
 
     def test_works_formatted_h6(self):
-        block = "###### **Header** with *some* `cool` [formatting](link)"
+        block = "###### **Header** with _some_ `cool` [formatting](link)"
         node = block_to_html_node_heading(block)
         html = node.to_html()
 
@@ -264,7 +264,7 @@ class TestBlockToHTMLNodeQuote(unittest.TestCase):
         self.assertEqual(html, want)
 
     def test_works_formatted(self):
-        block = ">one line *block* quote **with formatting**"
+        block = ">one line _block_ quote **with formatting**"
         node = block_to_html_node_quote(block)
         html = node.to_html()
 
@@ -272,7 +272,7 @@ class TestBlockToHTMLNodeQuote(unittest.TestCase):
         self.assertEqual(html, want)
 
     def test_works_multiline(self):
-        block = ">to be **or** not to be\n>*that* is the [question](questions.com)"
+        block = ">to be **or** not to be\n>_that_ is the [question](questions.com)"
         node = block_to_html_node_quote(block)
         html = node.to_html()
 
@@ -280,7 +280,7 @@ class TestBlockToHTMLNodeQuote(unittest.TestCase):
         self.assertEqual(html, want)
 
     def test_works_multiline_nested(self):
-        block = ">to be **or** not to be\n>*that* is the [question](questions.com)\n>* nested list\n>> nested blockquote!"
+        block = ">to be **or** not to be\n>_that_ is the [question](questions.com)\n>* nested list\n>> nested blockquote!"
         node = block_to_html_node_quote(block)
         html = node.to_html()
 
@@ -306,7 +306,7 @@ class TestBlockToHTMLNodeUlist(unittest.TestCase):
         self.assertEqual(html, want)
 
     def test_works_several_formatted(self):
-        block = "* *italic*\n* **bold**\n* `code`\n* normal"
+        block = "* _italic_\n* **bold**\n* `code`\n* normal"
         node = block_to_html_node_ulist(block)
         html = node.to_html()
 
@@ -332,7 +332,7 @@ class TestBlockToHTMLNodeOlist(unittest.TestCase):
         self.assertEqual(html, want)
 
     def test_works_several_formatted(self):
-        block = "1. *italic*\n2. **bold**\n3. `code`\n4. normal"
+        block = "1. _italic_\n2. **bold**\n3. `code`\n4. normal"
         node = block_to_html_node_olist(block)
         html = node.to_html()
 

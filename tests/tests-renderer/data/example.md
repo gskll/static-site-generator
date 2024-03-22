@@ -16,13 +16,13 @@
 
 **Bold text**
 
-*Italic text*
+_Italic text_
 
 ~~Strikethrough text~~
 
 `Inline code`
 
-This *sentence* tests **out** our ~~block~~ i mean `inline` and [styles](styles.com)
+This _sentence_ tests **out** our ~~block~~ i mean `inline` and [styles](styles.com)
 
 Code block:
 

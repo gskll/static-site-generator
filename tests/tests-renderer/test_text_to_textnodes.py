@@ -6,7 +6,7 @@ from src.renderer.text_to_textnodes import text_to_textnodes
 
 class TestTextToTextNodes(unittest.TestCase):
     def test_works_with_all_node_types(self):
-        text = "This is **text** with an *italic* word and a `code block` and an ![image](https://i.imgur.com/zjjcJKZ.png) and a [link](https://boot.dev) and ~~this has been deleted.~~ `adjacent code`"
+        text = "This is **text** with an _italic_ word and a `code block` and an ![image](https://i.imgur.com/zjjcJKZ.png) and a [link](https://boot.dev) and ~~this has been deleted.~~ `adjacent code`"
         nodes = text_to_textnodes(text)
         want = [
             TextNode("This is ", TextNodeType.TEXT),
@@ -46,7 +46,7 @@ class TestTextToTextNodes(unittest.TestCase):
         self.assertEqual(want, nodes)
 
     def test_works_with_not_all_type(self):
-        text = "This *text* has **no** [code](google.com/code) or images"
+        text = "This _text_ has **no** [code](google.com/code) or images"
         nodes = text_to_textnodes(text)
         want = [
             TextNode("This ", TextNodeType.TEXT),

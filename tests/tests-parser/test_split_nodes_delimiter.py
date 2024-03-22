@@ -36,7 +36,7 @@ class TestSplitNodesDelimiter(unittest.TestCase):
         self.assertEqual(new_nodes, want)
 
     def test_works_italic(self):
-        node = TextNode("This is text with a *italic* word", TextNodeType.TEXT)
+        node = TextNode("This is text with a _italic_ word", TextNodeType.TEXT)
         new_nodes = split_nodes_delimiter([node], TextNodeType.ITALIC)
 
         want = [
@@ -88,14 +88,14 @@ class TestSplitNodesDelimiter(unittest.TestCase):
         self.assertEqual(new_nodes, want)
 
     def test_fails_mismatched_delimiters(self):
-        node = TextNode("This is text with *mismatched delimiters", TextNodeType.TEXT)
+        node = TextNode("This is text with _mismatched delimiters", TextNodeType.TEXT)
 
         with self.assertRaises(ValueError) as e:
             split_nodes_delimiter([node], TextNodeType.ITALIC)
         self.assertEqual(str(e.exception), "mismatch in delimiters")
 
     def test_works_multiple_delimiters(self):
-        node = TextNode("This *is* text with *multiple delimiters*", TextNodeType.TEXT)
+        node = TextNode("This _is_ text with _multiple delimiters_", TextNodeType.TEXT)
         new_nodes = split_nodes_delimiter([node], TextNodeType.ITALIC)
 
         want = [
@@ -137,7 +137,7 @@ class TestSplitNodesDelimiter(unittest.TestCase):
     def test_works_mutlple_nodes_multiple_passes(self):
         node0 = LeafNode(value="test")
         node1 = TextNode("**This text is all between delimiters**", TextNodeType.TEXT)
-        node2 = TextNode("This is text with a *italic* word", TextNodeType.TEXT)
+        node2 = TextNode("This is text with a _italic_ word", TextNodeType.TEXT)
         node3 = TextNode("This is text with a **bold** word", TextNodeType.TEXT)
         node4 = TextNode("This is text with `some code`", TextNodeType.TEXT)
         new_nodes = split_nodes_delimiter(

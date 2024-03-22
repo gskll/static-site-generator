@@ -3,7 +3,7 @@ from src.models.textnode import TextNode, TextNodeType
 
 delimiters = {
     TextNodeType.BOLD: "**",
-    TextNodeType.ITALIC: "*",
+    TextNodeType.ITALIC: "_",
     TextNodeType.CODE: "`",
     TextNodeType.STRIKETHROUGH: "~~",
 }
