@@ -9,8 +9,9 @@ delimiters = {
 }
 
 
-# TODO: edit to handle nested inline delimiters e.g. italic&bold
-# prob moving from splitting strings to symbol matching with a stack
+# TODO: edit to handle nested inline delimiters e.g. italic&bold - new textnodetype
+# current approach naive based on equal delimiters
+# plan: track current text and current formatting state and parse all delimiters/textnodes at once
 # TODO: support * and _ symbols for bold/italic
 def split_nodes_delimiter(
     old_nodes: list[TextNode | HTMLNode], text_type: TextNodeType
